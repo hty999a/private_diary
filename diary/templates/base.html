@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- internet explorerの互換モードを無効 -->
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0">
+    <!-- width=device-width は幅をデバイスの幅に合わせる -->
+    <!-- user-scalable=yes は利用者が画面サイズを調整できる機能を有効にする -->
+    <!-- initial-scale=1.0 は初期表示倍率は1.0 -->
+    <title>{% block title %}django_project_2{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'diary/css/base.css' %}" />
+    {% block extra_style %}{% endblock %}
+    <!-- <link rel="stylesheet" href="../assets/css/entrance.css"> -->
+    <!-- css指定 -->
+    <link rel="shortcut icon" href="{% static 'diary/img/logo.png' %}">
+    <!-- ファビコン指定 (favorite icon) -->
+    <link rel="apple-touch-icon" href="{% static 'diary/img/logo.png' %}">
+    <!-- タッチアイコン指定,ホーム画面にうつるアイコン -->
+</head>
+<!-- 以上、上のコメントアウトしているところは「!」では出ないところ -->
+
+<body>
+    {% block header %}
+    <header class="header">
+        <a href="{% url 'index' %}">
+            <h1 class="logo"><img src="{% static 'diary/img/logo.png' %}" alt="ロゴ"></h1>
+        </a>
+        <div class="catch-copy"><span>ようこそ</span></div>
+        <nav class="globalnav">
+            <ul class="globalnav-list">
+                <li class="globalnav-list-content"><a href="{% url 'index' %}">エントランス</a></li>
+                {% if user.is_authenticated %}
+                <li class="globalnav-list-content {% block active_diary_list %}{% endblock %}"><a
+                        href="{% url 'diary_list' %}">Diary List</a></li>
+                {% endif %}
+                <div class="globalnav-list-content">
+                    <a href="{% url 'index' %}">
+                        <p>お部屋</p>
+                        <object>
+                            <div class="globalnav-list-content-wrapper">
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'account_logout' %}">
+                                        <div class="room-number">109</div>
+                                        <div class="warehouse room-name">ログアウト</div>
+                                    </a></li>
+                                {% else %}
+                                <li class="{% block active_signup %}{% endblock %}"><a
+                                        href="{% url 'account_signup' %}">
+                                        <div class="room-number">102</div>
+                                        <div class="niwa room-name">サインアップ</div>
+                                    </a></li>
+                                <li class="{% block active_login %}{% endblock %}"><a href="{% url 'account_login' %}">
+                                        <div class="room-number">103</div>
+                                        <div class="miwa room-name">ログイン</div>
+                                    </a></li>
+                                <li class="owner"><a href="{% url 'inquiry' %}">問い合わせフォーム</a></li>
+                                {% endif %}
+                            </div>
+                        </object>
+                    </a>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    {% endblock %}
+
+    {% if messages %}
+    <div class="messages">
+        <div class="">
+            <div class="">
+                <ul class="" style="list-style: none;">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{message.tag}}" {% endif %}>
+                        {{message}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% block contents %}
+    <div class="main">
+        <div class="wrapper">
+            <h2>ようこそmain</h2>
+            <h2></h2>
+            <!-- <div class="teki_img"><img src="../assets/img/teki.jpg" alt="敵画像"></div> -->
+        </div><!-- wrapper -->
+    </div>
+    {% endblock %}
+
+    {% block footer %}
+    <footer class="footer">
+        <p class="copy">
+            <small>&copy; diary</small>
+        </p><!-- copy -->
+    </footer>
+    {% endblock %}
+</body>
+
+</html>

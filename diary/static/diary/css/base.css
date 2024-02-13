@@ -1,0 +1,211 @@
+@charset "UTF-18";
+
+.header {
+    position: relative;
+    /*子要素の基準となる*/
+    width: 100%;
+    height: 0;
+    padding-bottom: 30%;
+    /*縦横=30%×100%
+    padding-bottomは今のwidthを100%とすることを利用した*/
+    background: url(../img/worldtree.png) no-repeat center center/cover;
+    /*no repeat: 繰り返さない
+      center: 真ん中に
+      center/cover: 真ん中/隙間を埋めるように表示*/
+}
+
+
+.logo img {
+    width: 40px;
+    padding: 4px 4px 0;
+    /*大きさ微調整*/
+    background: #fff;
+    position: absolute;
+    /*親要素に対して位置を固定する*/
+    top: 10px;
+    left: 10px;
+    /*親要素のrelativeであるheaderの左上から上から10px,左から10px*/
+    border-radius: 50%;
+    /*かどを円にする*/
+}
+
+.catch-copy,
+.page-title {
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-family: "ヒラギノ明朝 Pro W3", "Hiragino Mincho ProN", "HG明朝E", "MS P明朝", "MS 明朝", serif;
+    font-size: 6vw;
+    font-weight: bold;
+    /*headerから見た位置を固定*/
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /*headerのheightを100%とすると、上から50%、左から0に配置*/
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    /*要素の高さの半分だけ上へ*/
+}
+
+.catch-copy span,
+.page-title span {
+    border-bottom: 3px solid #fff;
+    padding-bottom: 4px;
+}
+
+/*#region ナビゲーション*/
+.globalnav {
+    position: absolute;
+    top: 23%;
+    left: 10px;
+}
+
+/*padding: 0 10px;*/
+/*transform: translate(0, -50%);*/
+
+.globalnav-list {
+    width: auto;
+    padding: 1px;
+    /*ナビゲーション全体の指定*/
+    border: 1px solid #000;
+    table-layout: fixed;
+}
+
+/*margin: 0 auto;*/
+/*max-width: 800px;*/
+/*display: table;*/
+/*table-layout: fixed;*/
+
+.globalnav-list-content {
+    background-color: #fff;
+    border: 1px solid #000;
+    /*ナビゲーションそれぞれのブロックの指定*/
+    /*(注意1)こっちにpaddingするとブロック内にカーソル合わせてもリンク飛べない*/
+}
+
+/*padding: 10px;*/
+/*position: absolute;*/
+/*margin: 0;
+padding: 0;*/
+/*display: flex;*/
+/*width: 150px;*/
+/*text-align: center;*/
+/*flex-wrap: wrap;*/
+/*
+.globalnav li:not(:first-child) {
+    border-left: 1px solid #000;
+}
+*/
+
+.globalnav-list-content a {
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    /*(注意1)こっちにブロックを設定して、paddingもする。*/
+    z-index: 1;
+}
+
+/*display: block;*/
+/*display blockでそのブロック内であれば、テキスト上でなくてもカーソルを持っていくとリンクに飛べる*/
+
+.globalnav-list-content a:hover {
+    opacity: 1;
+}
+
+.globalnav-list-content a:hover {
+    background: #e5789e;
+    color: #fff;
+}
+
+/* 
+@media print,
+screen and (min-width: 768px) {
+} */
+
+/*font-size: 1.3rem;*/
+/*display: block;*/
+/*background: #fff;*/
+/*padding: 15px 0;*/
+
+.globalnav-list-content-wrapper li {
+    border: 1px solid #000;
+    margin: 3px;
+    margin-left: 10px;
+    box-sizing: 300px;
+}
+
+.globalnav-list-content-wrapper a:hover {
+    opacity: 1;
+}
+
+@media print,
+screen and (min-width: 768px) {
+    .globalnav-list-content-wrapper a:hover {
+        background: rgb(120, 196, 229);
+        color: #fff;
+    }
+}
+
+/*padding: 3px;*/
+/*padding-right: 20px;*/
+/*.globalnav-list-content-wrapper a {
+    z-index: 2;
+}*/
+
+
+.niwa {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.miwa {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.owner {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.room-name {
+    padding-left: 20px;
+}
+
+/*#endregion ナビゲーション終了*/
+/* ここからメイン */
+.messages {
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+@media screen and (min-width:690px) {
+    .container {
+        width: 40%;
+        margin: 0 auto;
+        position: relative;
+    }
+}
+
+.container-form {
+    position: relative;
+    /* transform: translateX(50px); */
+    padding: 50px;
+    margin-top: 100px;
+}
+
+/* ここまでメイン */
+
+.footer {
+    padding: 50px 10px;
+}
+
+.copy {
+    text-align: center;
+}
+
+/*以下bodyのmainブロックのcss*/
+
+h2 {
+    font-size: large;
+    text-align: center;
+}

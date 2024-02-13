@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}お問い合わせ | Private Diary{% endblock %}
+
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static 'diary/css/inquiry.css' %}">
+{% endblock %}
+
+{% block contents %}
+<div class="main">
+    <div class="container">
+        <div class="container-form">
+            <form method="post" action="{% url 'inquiry' %}" enctype="multipart/form-data" class="signup-form">
+                {% csrf_token %}
+
+                {{forms.non_field_errors}}
+
+                {% for field in form %}
+                <div class="form-group row">
+                    <label for="{{ field.id_for_label}}" class="aaa">
+                        <strong>{{field.label_tag}}</strong>
+                    </label>
+                    <div class="main-form-field">
+                        {{field}}
+                        {% if field.errors %}
+                        {{ field.errors }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="">
+                    <button class="" type="submit">送信</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

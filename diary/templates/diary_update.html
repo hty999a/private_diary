@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}日記編集 | Private Diary{% endblock %}
+
+{% block active_diary_list %}active{% endblock %}
+
+{% block extra_style %}
+<link href="{% static 'diary/css/diary_update.css' %}" rel="stylesheet" type="text/css">
+<!-- <link href="{% static 'diary/css/diary_list.css' %}" rel="stylesheet" type="text/css"> -->
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table">
+                    {{ form.as_table }}
+                </table>
+                <button class="" type="submit">更新</button>
+                <a class="" href="{% url 'diary_detail' object.pk %}">キャンセル</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
